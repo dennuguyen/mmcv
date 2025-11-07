@@ -1,0 +1,56 @@
+[build-system]
+requires = [
+    "setuptools",
+    "wheel",
+    "torch",
+    "packaging",
+    "psutil",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mmcv"
+version = "2.2.0"
+description = "OpenMMLab Computer Vision Foundation"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "Apache-2.0"
+keywords = ["computer vision", "deep learning", "openmmlab"]
+authors = [
+    { name = "MMCV Contributors", email = "openmmlab@gmail.com" },
+]
+urls = { Homepage = "https://github.com/open-mmlab/mmcv" }
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+]
+
+dependencies = [
+    "numpy",
+    "pillow",
+    "yapf",
+    "packaging",
+    "opencv-python-headless>=3 ; sys_platform != 'darwin'",
+    "torch",
+]
+
+[project.optional-dependencies]
+all = ["mmengine", "mmdet", "pytest", "requests"]
+tests = ["pytest", "pytest-cov"]
+build = ["cmake", "ninja"]
+optional = ["opencv-python>=3"]
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mmcv*"]
+
+[tool.setuptools.cmdclass]
+build_ext = "torch.utils.cpp_extension.BuildExtension"

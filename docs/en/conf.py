@@ -11,6 +11,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+
+from importlib.metadata import version
+
 import os
 import sys
 
@@ -19,21 +22,12 @@ from sphinx.builders.html import StandaloneHTMLBuilder
 
 sys.path.insert(0, os.path.abspath('../..'))
 
-version_file = '../../mmcv/version.py'
-with open(version_file) as f:
-    exec(compile(f.read(), version_file, 'exec'))
-__version__ = locals()['__version__']
-
 # -- Project information -----------------------------------------------------
 
 project = 'mmcv'
 copyright = '2018-2022, OpenMMLab'
 author = 'MMCV Authors'
-
-# The short X.Y version
-version = __version__
-# The full version, including alpha/beta/rc tags
-release = __version__
+release = version("mmpose")
 
 # -- General configuration ---------------------------------------------------
 
